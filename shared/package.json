@@ -1,0 +1,11 @@
+{
+  "name": "forallaxis-shared",
+  "version": "1.0.0",
+  "description": "Shared constants and validators for ForAllAxis",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    "./constants": "./constants/index.js",
+    "./validators": "./validators/index.js"
+  }
+}

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: forallaxis-db
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - forallaxis-network
+
+  server:
+    build: ./server
+    container_name: forallaxis-server
+    ports:
+      - '5000:5000'
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    networks:
+      - forallaxis-network
+
+  client:
+    build: ./client
+    container_name: forallaxis-client
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - server
+    networks:
+      - forallaxis-network
+
+volumes:
+  mongo-data:
+
+networks:
+  forallaxis-network:
+    driver: bridge
