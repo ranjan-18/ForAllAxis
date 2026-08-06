@@ -5,7 +5,7 @@ import ScrollToTop from '../components/common/ScrollToTop';
 
 export default function AdminLayout() {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-primary)' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: 'transparent' }}>
       <ScrollToTop />
       <Sidebar />
       <main style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>

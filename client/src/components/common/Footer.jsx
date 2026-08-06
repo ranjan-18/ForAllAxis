@@ -1,91 +1,102 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiMail, FiPhone, FiMapPin, FiArrowUp } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { FaInstagram, FaLinkedinIn, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import logo from '../../assets/images/logo.png';
 import { COMPANY_INFO, NAV_LINKS, SERVICES } from '../../utils/constants';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-grid">
-          {/* Column 1: Brand */}
-          <div className="footer-brand">
-            <Link to="/" className="footer-logo">
-              <img src={logo} alt="ForAllAxis Logo" />
-              <span>For<span className="text-red-500">All</span>Axis</span>
-            </Link>
-            <p className="footer-tagline">{COMPANY_INFO.tagline}</p>
-            <div className="footer-social">
-              <a href="#" className="social-icon" aria-label="Instagram"><FaInstagram /></a>
-              <a href="#" className="social-icon" aria-label="LinkedIn"><FaLinkedinIn /></a>
-              <a href="#" className="social-icon" aria-label="Twitter"><FaTwitter /></a>
-              <a href="#" className="social-icon" aria-label="Facebook"><FaFacebookF /></a>
+    <footer className="footer-target">
+      <div className="footer-top">
+        <div className="container">
+          <div className="footer-target-grid">
+            {/* Column 1: Quick Links */}
+            <div className="footer-col">
+              <h4>Quick Links</h4>
+              <ul>
+                {NAV_LINKS.map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.path}>{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="footer-links">
-            <h4 className="footer-title">Quick Links</h4>
-            <ul>
-              {NAV_LINKS.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.path}>{link.name}</Link>
+            {/* Column 2: Our Services */}
+            <div className="footer-col">
+              <h4>Our Services</h4>
+              <ul>
+                {SERVICES.map((service) => (
+                  <li key={service.slug}>
+                    <Link to={`/services#${service.slug}`}>{service.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Contact Us */}
+            <div className="footer-col">
+              <h4>Contact Us</h4>
+              <ul>
+                <li>
+                  <a href={`mailto:${COMPANY_INFO.email}`}>
+                    <span className="store-icon"><FiMail /></span> {COMPANY_INFO.email}
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Services */}
-          <div className="footer-links">
-            <h4 className="footer-title">Our Services</h4>
-            <ul>
-              {SERVICES.map((service) => (
-                <li key={service.slug}>
-                  <Link to={`/services#${service.slug}`}>{service.title}</Link>
+                <li>
+                  <a href={`tel:${COMPANY_INFO.phone}`}>
+                    <span className="store-icon"><FiPhone /></span> {COMPANY_INFO.phone}
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Contact */}
-          <div className="footer-contact">
-            <h4 className="footer-title">Contact Us</h4>
-            <ul>
-              <li>
-                <FiMail className="contact-icon" />
-                <a href={`mailto:${COMPANY_INFO.email}`}>{COMPANY_INFO.email}</a>
-              </li>
-              <li>
-                <FiPhone className="contact-icon" />
-                <a href={`tel:${COMPANY_INFO.phone}`}>{COMPANY_INFO.phone}</a>
-              </li>
-              <li>
-                <FiMapPin className="contact-icon" />
-                <span>{COMPANY_INFO.address}</span>
-              </li>
-            </ul>
+                <li>
+                  <span style={{ display: 'flex', alignItems: 'flex-start', color: '#333', fontSize: '0.85rem' }}>
+                    <span className="store-icon"><FiMapPin /></span> {COMPANY_INFO.address}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Column 4: Legal */}
+            <div className="footer-col">
+              <h4>Legal</h4>
+              <ul>
+                <li><Link to="/privacy">Privacy Policy</Link></li>
+                <li><Link to="/terms">Terms of Service</Link></li>
+                <li><Link to="/cookie-policy">Cookie Policy</Link></li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p className="copyright">
-            &copy; {new Date().getFullYear()} {COMPANY_INFO.name}. All Rights Reserved.
-          </p>
-          <p className="designed-by">
-            Designed with <span className="text-red-500">❤️</span> by ForAllAxis
-          </p>
+        {/* Skyline / Logo Area */}
+        <div className="footer-skyline-area">
+           <div className="skyline-logo">
+             <img src={logo} alt="ForAllAxis Logo" />
+             <h3>{COMPANY_INFO.tagline}</h3>
+           </div>
+           <div className="skyline-illustration"></div>
         </div>
       </div>
 
-      <button className="back-to-top" onClick={scrollToTop} aria-label="Back to top">
-        <FiArrowUp />
-      </button>
+      <div className="footer-bottom-dark">
+        <div className="container">
+          <div className="footer-bottom-content">
+            <div className="footer-social-dark">
+              <a href="#" aria-label="LinkedIn"><FaLinkedinIn /></a>
+              <a href="#" aria-label="Facebook"><FaFacebookF /></a>
+              <a href="#" aria-label="Instagram"><FaInstagram /></a>
+              <a href="#" aria-label="Twitter"><FaTwitter /></a>
+            </div>
+            <div className="footer-legal">
+              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
+              <span>&copy; {new Date().getFullYear()} {COMPANY_INFO.name}. All Rights Reserved.</span>
+              <span>Designed with ❤️ by {COMPANY_INFO.name}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

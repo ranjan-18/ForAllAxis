@@ -22,10 +22,7 @@ const testimonialSchema = new mongoose.Schema(
       max: 5,
       required: true,
     },
-    avatar: {
-      url: String,
-      publicId: String,
-    },
+    image: String,
     featured: {
       type: Boolean,
       default: false,

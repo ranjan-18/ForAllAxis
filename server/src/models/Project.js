@@ -27,6 +27,7 @@ const projectSchema = new mongoose.Schema(
       type: String,
       enum: ['web-development', 'mobile-app', 'ui-ux', 'branding', 'digital-marketing'],
       required: true,
+      index: true,
     },
     technologies: [
       {
@@ -39,15 +40,13 @@ const projectSchema = new mongoose.Schema(
         publicId: String,
       },
     ],
-    thumbnail: {
-      url: String,
-      publicId: String,
-    },
+    thumbnail: String,
     liveUrl: String,
     githubUrl: String,
     featured: {
       type: Boolean,
       default: false,
+      index: true,
     },
     status: {
       type: String,

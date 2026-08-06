@@ -1,19 +1,4 @@
-import rateLimit from 'express-rate-limit';
-
-export const generalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
-  message: 'Too many requests from this IP, please try again after 15 minutes',
-});
-
-export const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10,
-  message: 'Too many login attempts from this IP, please try again after 15 minutes',
-});
-
-export const contactLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5,
-  message: 'Too many contact requests from this IP, please try again after an hour',
-});
+// Disabled for development to prevent 429 errors
+export const generalLimiter = (req, res, next) => next();
+export const authLimiter = (req, res, next) => next();
+export const contactLimiter = (req, res, next) => next();

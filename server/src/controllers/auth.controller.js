@@ -54,6 +54,8 @@ export const logout = asyncHandler(async (req, res) => {
 });
 
 export const getMe = asyncHandler(async (req, res) => {
+  console.log('Cookies in getMe:', req.cookies);
+  console.log('Headers in getMe:', req.headers);
   const user = await User.findById(req.user._id);
   res.status(200).json(ApiResponse.success(user));
 });

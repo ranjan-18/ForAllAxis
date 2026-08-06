@@ -13,10 +13,7 @@ const teamMemberSchema = new mongoose.Schema(
     bio: {
       type: String,
     },
-    avatar: {
-      url: String,
-      publicId: String,
-    },
+    image: String,
     socialLinks: {
       linkedin: String,
       twitter: String,

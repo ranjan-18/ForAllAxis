@@ -42,8 +42,8 @@ const Navbar = () => {
         </nav>
 
         <div className="nav-cta desktop-only">
-          <NavLink to="/contact" className="btn btn-primary">
-            Get Quote <FiArrowUpRight className="icon" />
+          <NavLink to="/start-project" className="btn btn-primary">
+            Start a Project <FiArrowUpRight className="icon" />
           </NavLink>
         </div>
 
@@ -65,8 +65,8 @@ const Navbar = () => {
               {link.name}
             </NavLink>
           ))}
-          <NavLink to="/contact" className="btn btn-primary mobile-cta" onClick={() => setIsMobileMenuOpen(false)}>
-            Get Quote <FiArrowUpRight className="icon" />
+          <NavLink to="/start-project" className="btn btn-primary mobile-cta" onClick={() => setIsMobileMenuOpen(false)}>
+            Start a Project <FiArrowUpRight className="icon" />
           </NavLink>
         </div>
       </div>

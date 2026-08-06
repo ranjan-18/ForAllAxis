@@ -4,8 +4,10 @@ import connectDB from './config/db.js';
 import logger from './utils/logger.js';
 
 process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION! Shutting down...');
+  console.error(err);
   logger.error('UNCAUGHT EXCEPTION! Shutting down...');
-  logger.error(err.name, err.message, err.stack);
+  logger.error(err);
   process.exit(1);
 });
 

@@ -23,6 +23,9 @@ const serviceSchema = new mongoose.Schema(
     icon: {
       type: String,
     },
+    image: {
+      type: String,
+    },
     features: [
       {
         type: String,
@@ -35,6 +38,7 @@ const serviceSchema = new mongoose.Schema(
     isActive: {
       type: Boolean,
       default: true,
+      index: true,
     },
   },
   { timestamps: true }

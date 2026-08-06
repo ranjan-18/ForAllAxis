@@ -5,10 +5,11 @@ import Hero from '../../components/sections/Hero';
 import WelcomeSection from '../../components/sections/WelcomeSection';
 import AboutPreview from '../../components/sections/AboutPreview';
 import Services from '../../components/sections/Services';
+import Industries from '../../components/sections/Industries';
 import Stats from '../../components/sections/Stats';
 import Portfolio from '../../components/sections/Portfolio';
 import Testimonials from '../../components/sections/Testimonials';
-import BlogPreview from '../../components/sections/BlogPreview';
+import CareersPreview from '../../components/sections/CareersPreview';
 import CTA from '../../components/sections/CTA';
 
 const Home = () => {
@@ -32,10 +33,11 @@ const Home = () => {
       <WelcomeSection />
       <AboutPreview />
       <Services />
-      <Stats />
+      <Industries />
+
       <Portfolio />
       <Testimonials />
-      <BlogPreview />
+    
       <CTA />
     </>
   );
