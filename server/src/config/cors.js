@@ -4,6 +4,9 @@ const allowedOrigins = env.CLIENT_URL ? env.CLIENT_URL.split(',').map(o => o.tri
 
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log('[CORS Debug] Incoming Origin:', origin);
+    console.log('[CORS Debug] Allowed Origins:', allowedOrigins);
+    
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
       return callback(null, true);
