@@ -8,10 +8,11 @@ export const generateToken = (userId) => {
 };
 
 export const setTokenCookie = (res, token) => {
+  const isProduction = env.NODE_ENV === 'production';
   res.cookie('jwt', token, {
     httpOnly: true,
-    secure: env.NODE_ENV !== 'development',
-    sameSite: 'lax',
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
   });
 };
