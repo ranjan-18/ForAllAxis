@@ -1,5 +1,5 @@
 /**
- * User roles used across ForAllAxis application.
+ * User roles used across ForallAxis application.
  */
 export const ADMIN = 'admin';
 export const SUPER_ADMIN = 'super_admin';

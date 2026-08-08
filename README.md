@@ -1,9 +1,9 @@
-# ForAllAxis Agency Website
+# ForallAxis Agency Website
 
 ![MERN Stack](https://img.shields.io/badge/MERN-Stack-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-ForAllAxis is a full-stack MERN (MongoDB, Express, React, Node.js) application for a professional agency website.
+ForallAxis is a full-stack MERN (MongoDB, Express, React, Node.js) application for a professional agency website.
 
 ## 🚀 Tech Stack
 

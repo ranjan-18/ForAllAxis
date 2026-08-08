@@ -38,13 +38,13 @@ export const sendContactConfirmation = async (email, name) => {
   const mailOptions = {
     from: env.EMAIL_FROM,
     to: email,
-    subject: 'Thank you for contacting ForAllAxis',
+    subject: 'Thank you for contacting ForallAxis',
     html: `
       <h2>Hello ${name},</h2>
-      <p>Thank you for reaching out to ForAllAxis. We have received your message and our team will get back to you shortly.</p>
+      <p>Thank you for reaching out to ForallAxis. We have received your message and our team will get back to you shortly.</p>
       <br />
       <p>Best regards,</p>
-      <p><strong>ForAllAxis Team</strong></p>
+      <p><strong>ForallAxis Team</strong></p>
     `,
   };
 

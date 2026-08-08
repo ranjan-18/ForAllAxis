@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
 export const env = {
   PORT: process.env.PORT || 5000,
@@ -21,5 +21,5 @@ export const env = {
   SMTP_PORT: process.env.SMTP_PORT || 2525,
   SMTP_USER: process.env.SMTP_USER,
   SMTP_PASS: process.env.SMTP_PASS,
-  EMAIL_FROM: process.env.EMAIL_FROM || 'noreply@forallaxis.com'
+  EMAIL_FROM: process.env.EMAIL_FROM || 'contact.forallaxis@gmail.com'
 };

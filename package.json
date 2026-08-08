@@ -1,16 +1,17 @@
 {
   "name": "forallaxis",
   "version": "1.0.0",
-  "description": "ForAllAxis Agency Website - MERN Stack",
+  "description": "ForallAxis Agency Website - MERN Stack",
   "private": true,
-  "workspaces": ["client", "server", "shared"],
+  "workspaces": ["client-public", "client-admin", "server", "shared"],
   "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:public\" \"npm run dev:admin\"",
     "dev:server": "npm run dev --workspace=server",
-    "dev:client": "npm run dev --workspace=client",
-    "build": "npm run build --workspace=client",
+    "dev:public": "npm run dev --workspace=client-public",
+    "dev:admin": "npm run dev --workspace=client-admin",
+    "build": "concurrently \"npm run build --workspace=client-public\" \"npm run build --workspace=client-admin\"",
     "start": "npm run start --workspace=server",
-    "lint": "concurrently \"npm run lint --workspace=server\" \"npm run lint --workspace=client\"",
+    "lint": "concurrently \"npm run lint --workspace=server\" \"npm run lint --workspace=client-public\" \"npm run lint --workspace=client-admin\"",
     "seed": "npm run seed --workspace=server"
   },
   "devDependencies": {

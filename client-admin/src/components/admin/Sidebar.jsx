@@ -1,0 +1,76 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+import { FiGrid, FiBriefcase, FiLayers, FiStar, FiUsers, FiFileText, FiMessageSquare, FiLogOut, FiFolder } from 'react-icons/fi';
+import logo from '../../assets/images/logo.png';
+
+export default function Sidebar() {
+  const { logout } = useAuth();
+  
+  const navItems = [
+    { name: 'Dashboard', path: '/', icon: <FiGrid /> },
+    { name: 'Projects', path: '/projects', icon: <FiBriefcase /> },
+    { name: 'Services', path: '/services', icon: <FiLayers /> },
+    { name: 'Testimonials', path: '/testimonials', icon: <FiStar /> },
+    { name: 'Careers', path: '/careers', icon: <FiBriefcase /> },
+    { name: 'Applications', path: '/applications', icon: <FiFileText /> },
+    { name: 'Team', path: '/team', icon: <FiUsers /> },
+    { name: 'Contacts', path: '/contacts', icon: <FiMessageSquare /> },
+    { name: 'Project Inquiries', path: '/project-inquiries', icon: <FiFolder /> },
+  ];
+
+  return (
+    <div className="admin-sidebar-container">
+      <div className="admin-logo-wrapper">
+        <img src={logo} alt="ForallAxis" style={{ height: '32px' }} />
+        <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '1px' }}>
+          For<span style={{ color: 'var(--accent-red)' }}>all</span>Axis
+        </span>
+      </div>
+
+      <nav className="admin-nav-list">
+        {navItems.map(item => (
+          <NavLink 
+            key={item.name} 
+            to={item.path} 
+            end={item.name === 'Dashboard'}
+            style={({ isActive }) => ({
+              display: 'flex', alignItems: 'center', gap: '1rem',
+              padding: '0.875rem 1rem', borderRadius: '0.75rem',
+              background: isActive ? 'var(--accent-red)' : 'transparent',
+              color: isActive ? '#fff' : 'var(--text-secondary)', 
+              fontWeight: isActive ? 600 : 500,
+              transition: 'all 0.2s ease-in-out',
+              boxShadow: isActive ? '0 10px 25px -5px rgba(239, 68, 68, 0.4)' : 'none'
+            })}
+          >
+            <span style={{ fontSize: '1.25rem' }}>{item.icon}</span>
+            <span>{item.name}</span>
+          </NavLink>
+        ))}
+      </nav>
+
+      <div className="admin-logout-container">
+        <button 
+          onClick={logout} 
+          style={{ 
+            width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+            padding: '0.875rem', borderRadius: '0.75rem', border: '1px solid rgba(239, 68, 68, 0.2)',
+            background: 'rgba(239, 68, 68, 0.05)', color: 'var(--accent-red)', fontWeight: 600,
+            cursor: 'pointer', transition: 'all 0.2s'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = 'var(--accent-red)';
+            e.currentTarget.style.color = '#fff';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = 'rgba(239, 68, 68, 0.05)';
+            e.currentTarget.style.color = 'var(--accent-red)';
+          }}
+        >
+          <FiLogOut /> Logout
+        </button>
+      </div>
+    </div>
+  );
+}

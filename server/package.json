@@ -1,7 +1,7 @@
 {
   "name": "forallaxis-server",
   "version": "1.0.0",
-  "description": "ForAllAxis Agency - Backend API",
+  "description": "ForallAxis Agency - Backend API",
   "type": "module",
   "main": "src/server.js",
   "scripts": {

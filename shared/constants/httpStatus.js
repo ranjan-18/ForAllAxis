@@ -1,5 +1,5 @@
 /**
- * HTTP Status Codes used across ForAllAxis application.
+ * HTTP Status Codes used across ForallAxis application.
  */
 export const OK = 200;
 export const CREATED = 201;
