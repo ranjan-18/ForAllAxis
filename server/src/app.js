@@ -14,9 +14,14 @@ import ApiError from './utils/ApiError.js';
 
 const app = express();
 
+// ✅ CORS must be the very first middleware — before helmet, routes, and everything
+app.use(cors(corsOptions));
+
+// ✅ Handle OPTIONS preflight requests immediately for all routes
+app.options('*', cors(corsOptions));
+
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(compression());
-app.use(cors(corsOptions));
 if (env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
@@ -36,3 +41,4 @@ app.all('*', (req, res, next) => {
 app.use(errorHandler);
 
 export default app;
+

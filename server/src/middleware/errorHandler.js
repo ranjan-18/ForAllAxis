@@ -1,8 +1,12 @@
 import logger from '../utils/logger.js';
 import { env } from '../config/env.js';
 import ApiError from '../utils/ApiError.js';
+import { setCorsHeaders } from '../config/cors.js';
 
 export const errorHandler = (err, req, res, next) => {
+  // ✅ Always set CORS headers first — even on crashes — so browsers can read the error
+  setCorsHeaders(req, res);
+
   let error = { ...err };
   error.message = err.message;
 
