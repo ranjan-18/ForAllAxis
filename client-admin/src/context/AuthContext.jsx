@@ -18,10 +18,16 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const checkAuth = async () => {
+      const token = localStorage.getItem('admin_token');
+      if (!token) {
+        dispatch({ type: 'LOGOUT' });
+        return;
+      }
       try {
         const { data } = await authService.getMe();
-        dispatch({ type: 'LOGIN', payload: data.user });
+        dispatch({ type: 'LOGIN', payload: data.data });
       } catch {
+        localStorage.removeItem('admin_token');
         dispatch({ type: 'LOGOUT' });
       }
     };
@@ -30,17 +36,22 @@ export function AuthProvider({ children }) {
 
   const login = async (credentials) => {
     const { data } = await authService.login(credentials);
-    dispatch({ type: 'LOGIN', payload: data.user });
+    const token = data.data?.token;
+    if (token) localStorage.setItem('admin_token', token);
+    dispatch({ type: 'LOGIN', payload: data.data });
   };
+
   const logout = async () => {
     try {
       await authService.logout();
     } catch (error) {
       console.error('Logout request failed:', error);
     } finally {
+      localStorage.removeItem('admin_token');
       dispatch({ type: 'LOGOUT' });
     }
   };
 
   return <AuthContext.Provider value={{ ...state, login, logout }}>{children}</AuthContext.Provider>;
 }
+
