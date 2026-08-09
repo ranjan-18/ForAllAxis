@@ -1,3 +1,4 @@
+import fs from 'fs';
 import app from './app.js';
 import { env } from './config/env.js';
 import connectDB from './config/db.js';
@@ -10,6 +11,12 @@ process.on('uncaughtException', (err) => {
   logger.error(err);
   process.exit(1);
 });
+
+
+// Ensure uploads directory exists
+if (!fs.existsSync('uploads')) {
+  fs.mkdirSync('uploads', { recursive: true });
+}
 
 connectDB().then(() => {
   const server = app.listen(env.PORT, () => {

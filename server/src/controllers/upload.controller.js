@@ -7,8 +7,8 @@ import path from 'path';
 export const uploadImage = asyncHandler(async (req, res) => {
   if (!req.file) throw ApiError.badRequest('No image file provided');
   
-  // Since we switched to diskStorage, req.file.filename is available.
-  const url = `http://localhost:5000/uploads/${req.file.filename}`;
+  // Dynamically determine the URL based on the request host
+  const url = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
   
   res.status(200).json(ApiResponse.success({ url, publicId: req.file.filename }, 'Image uploaded successfully'));
 });
