@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { FaInstagram, FaLinkedinIn, FaTwitter, FaFacebookF } from 'react-icons/fa';
 import logo from '../../assets/images/logo.png';
-import { COMPANY_INFO, NAV_LINKS, SERVICES, SOCIAL_LINKS } from '../../utils/constants';
+import { COMPANY_INFO, NAV_LINKS, SOCIAL_LINKS } from '../../utils/constants';
+import { serviceService } from '../../services';
 
 const Footer = () => {
+  const [dynamicServices, setDynamicServices] = useState([]);
+
+  useEffect(() => {
+    serviceService.getAll()
+      .then(res => {
+        const data = res.data?.data || res.data || [];
+        const servicesArray = Array.isArray(data) ? data : [];
+        setDynamicServices(servicesArray.filter(s => s.isActive !== false));
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <footer className="footer-target">
       <div className="footer-top">
@@ -27,7 +40,7 @@ const Footer = () => {
             <div className="footer-col">
               <h4>Our Services</h4>
               <ul>
-                {SERVICES.map((service) => (
+                {dynamicServices.map((service) => (
                   <li key={service.slug}>
                     <Link to={`/services#${service.slug}`}>{service.title}</Link>
                   </li>

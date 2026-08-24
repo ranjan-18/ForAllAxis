@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SectionHeading from '../../components/common/SectionHeading';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
-import { contactService } from '../../services';
+import { contactService, serviceService } from '../../services';
 import toast from 'react-hot-toast';
 
 export default function StartProject() {
@@ -16,6 +16,17 @@ export default function StartProject() {
     message: ''
   });
   const [loading, setLoading] = useState(false);
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    serviceService.getAll()
+      .then(res => {
+        const data = res.data?.data || res.data || [];
+        const servicesArray = Array.isArray(data) ? data : [];
+        setServices(servicesArray.filter(s => s.isActive !== false));
+      })
+      .catch(console.error);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,11 +135,9 @@ export default function StartProject() {
               <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: 500 }}>What do you need help with? *</label>
                 <select className="input-field" value={formData.projectType} onChange={e => setFormData({...formData, projectType: e.target.value})}>
-                  <option value="Web Development">Web Development</option>
-                  <option value="Mobile App Development">Mobile App Development</option>
-                  <option value="UI/UX Design">UI/UX Design</option>
-                  <option value="AI Automation">AI Automation</option>
-                  <option value="Branding & Logo Design">Branding & Logo Design</option>
+                  {services.map(s => (
+                    <option key={s._id} value={s.title}>{s.title}</option>
+                  ))}
                   <option value="Other">Other</option>
                 </select>
               </div>
