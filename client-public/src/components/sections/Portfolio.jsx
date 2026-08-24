@@ -32,7 +32,8 @@ export default function Portfolio() {
       <div className="grid grid-2" style={{ gap: '2rem' }}>
         {projects.map((project, i) => {
           // Use DB thumbnail if available, else map by title, else default
-          const imageUrl = project.thumbnail ? project.thumbnail : (imageMap[project.title] || defaultImage);
+          const rawImageUrl = project.thumbnail ? project.thumbnail : (imageMap[project.title] || defaultImage);
+          const imageUrl = rawImageUrl.replace('http://', 'https://');
           
           return (
             <Card key={project._id || i} hoverable padding="0" className="overflow-hidden" style={{ display: 'flex', flexDirection: 'column' }}>

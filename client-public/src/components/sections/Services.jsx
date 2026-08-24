@@ -71,13 +71,13 @@ const Services = () => {
           className="services-grid grid grid-3"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '0px' }}
+          animate="visible"
           style={{ display: 'grid', gap: '2rem' }}
         >
           {services.map((service, index) => {
             const IconComponent = IconMap[service.icon] || FiHexagon;
-            const imageUrl = service.image || imageMap[service.title] || defaultImage;
+            const rawImageUrl = service.image || imageMap[service.title] || defaultImage;
+            const imageUrl = rawImageUrl.replace('http://', 'https://');
             
             return (
               <motion.div 

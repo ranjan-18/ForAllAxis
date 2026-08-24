@@ -16,7 +16,7 @@ const Testimonials = () => {
           name: t.clientName,
           title: t.clientTitle,
           text: t.content,
-          avatar: t.image || 'https://i.pravatar.cc/150'
+          avatar: (t.image || 'https://i.pravatar.cc/150').replace('http://', 'https://')
         }));
         setTestimonials(data);
       })

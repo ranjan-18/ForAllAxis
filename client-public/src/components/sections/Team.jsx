@@ -24,7 +24,7 @@ export default function Team() {
                 borderRadius: '50%', 
                 background: 'var(--bg-secondary)', 
                 margin: '0 auto 1rem',
-                backgroundImage: `url(${member.image || 'https://i.pravatar.cc/150'})`,
+                backgroundImage: `url(${(member.image || 'https://i.pravatar.cc/150').replace('http://', 'https://')})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
