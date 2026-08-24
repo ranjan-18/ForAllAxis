@@ -5,12 +5,7 @@ import { NavLink } from 'react-router-dom';
 import heroBg from '../../assets/images/hero-bg.jpg';
 
 const Hero = () => {
-  const stats = [
-    { label: 'Projects Delivered', value: '150+', icon: <FiAward /> },
-    { label: 'Client Satisfaction', value: '98%', icon: <FiSmile /> },
-    { label: 'Years Experience', value: '5+', icon: <FiClock /> },
-    { label: 'Happy Clients', value: '50+', icon: <FiUsers /> },
-  ];
+ 
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -68,15 +63,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          {stats.map((stat, index) => (
-            <div key={index} className="hero-stat">
-              <div className="stat-icon" style={{ color: '#64748b', marginBottom: '0.5rem' }}>{stat.icon}</div>
-              <div className="stat-content">
-                <h3 className="stat-value" style={{ color: '#0f172a' }}>{stat.value}</h3>
-                <p className="stat-label" style={{ color: '#64748b' }}>{stat.label}</p>
-              </div>
-            </div>
-          ))}
+       
         </motion.div>
       </div>
     </section>

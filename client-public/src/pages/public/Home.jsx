@@ -30,7 +30,7 @@ const Home = () => {
 
       {/* Main content is always rendered underneath */}
       <Hero />
-      <WelcomeSection />
+      
       <AboutPreview />
       <Services />
       <Industries />
